@@ -126,18 +126,33 @@ const books = [
 // console.log("l’età media degli autori dei libri:", etàMedia);
 //!snack-5
 
-async function getBooks() {
-  const ids = [2, 13, 7, 21, 19];
-  const promises = ids.map((id) => {
-    return fetch(
-      `https://boolean-spec-frontend.vercel.app/freetestapi/books/${id} `
-    ).then((res) => res.json());
-  });
+// async function getBooks() {
+//   const ids = [2, 13, 7, 21, 19];
+//   const promises = ids.map((id) => {
+//     return fetch(
+//       `https://boolean-spec-frontend.vercel.app/freetestapi/books/${id} `
+//     ).then((res) => res.json());
+//   });
 
-  const allPromise = await Promise.all(promises);
-  return allPromise;
-}
+//   const allPromise = await Promise.all(promises);
+//   return allPromise;
+// }
 
-getBooks()
-  .then((data) => console.log("array di libri : ", data))
-  .catch((error) => console.log(error));
+// getBooks()
+//   .then((data) => console.log("array di libri : ", data))
+//   .catch((error) => console.log(error));
+
+//!Snack-6
+//*Crea una variabile booleana (areThereAvailableBooks) per verificare se c’è almeno un libro disponibile.
+// const areThereAvailableBooks = books.some((book) => book.available);
+// console.log("c’è almeno un libro disponibile ? :  ", areThereAvailableBooks);
+//*Crea un array (booksByPrice) con gli elementi di books ordinati in base al prezzo (crescente).
+
+// const booksByPrice = books.sort((a, b) => {
+//   return parseFloat(a.price) - parseFloat(b.price);
+// });
+// console.log(booksByPrice);
+//* Ordina l’array booksByPricein base alla disponibilità (prima quelli disponibili), senza creare un nuovo array.
+
+// const booksByPricein = books.sort((a, b) => b.available - a.available);
+// console.log(booksByPricein);
