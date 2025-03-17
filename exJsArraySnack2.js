@@ -47,49 +47,66 @@ const books = [
 
 //!Snack-1
 //*Funzione che somma due numeri :
-function somme(a, b) {
-  return a + b;
-}
-console.log("La somma è : ", somme(4, 9));
+// function somme(a, b) {
+//   return a + b;
+// }
+// console.log("La somma è : ", somme(4, 9));
 //*i libri che hanno più di 300 pagine :
 
-const longBook = books.filter((book) => book.pages > 300);
-console.log(longBook);
-//*Solo i nomi dei libri con più di 300 pagine:
-const longBooksTitle = longBook.map((book) => book.title);
-console.log(longBooksTitle);
-//*Stampo in console ogni titolo nella console.
-books.forEach((book) => console.log("Titolo : ", book.title));
+// const longBook = books.filter((book) => book.pages > 300);
+// console.log(longBook);
+// //*Solo i nomi dei libri con più di 300 pagine:
+// const longBooksTitle = longBook.map((book) => book.title);
+// console.log(longBooksTitle);
+// //*Stampo in console ogni titolo nella console.
+// books.forEach((book) => console.log("Titolo : ", book.title));
 //!Snack-2
 //*Creare un array (availableBooks) che contiene tutti i libri disponibili :
-const availableBooks = books.filter((book) => {
-  if (book.available === true) {
-    return book;
-  }
-});
-console.log(" available Book : ", availableBooks);
+// const availableBooks = books.filter((book) => {
+//   if (book.available === true) {
+//     return book;
+//   }
+// });
+// console.log(" available Book : ", availableBooks);
 //* Crea un array (discountedBooks) con gli availableBooks, ciascuno con il prezzo scontato del 20% (mantieni lo stesso formato e arrotonda al centesimo)
 
-const discountedBooks = availableBooks.map((book) => {
-  const prezzo = parseInt(book.price.replace("€", ""));
-  console.log("la stringa del numero prima la conversione :  ", book.price);
-  console.log("prezzo prima dello sconto ", prezzo);
-  const discount = (prezzo - prezzo * 0.2).toFixed(2);
-  console.log("prezzo scontato : ", discount);
-  return {
-    ...book,
-    price: `${discount}€`,
-  };
-});
+// const discountedBooks = availableBooks.map((book) => {
+//   const prezzo = parseInt(book.price.replace("€", ""));
+//   console.log("la stringa del numero prima la conversione :  ", book.price);
+//   console.log("prezzo prima dello sconto ", prezzo);
+//   const discount = (prezzo - prezzo * 0.2).toFixed(2);
+//   console.log("prezzo scontato : ", discount);
+//   return {
+//     ...book,
+//     price: `${discount}€`,
+//   };
+// });
 
-console.log("Libri con prezzi scontati : ", discountedBooks);
+// console.log("Libri con prezzi scontati : ", discountedBooks);
 
 //* Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi).
-const fullPricedBook = discountedBooks.find((book) => {
-  const prezzo = parseFloat(book.price.replace("€", ""));
-  console.log("fff", prezzo);
-  let prezzoFinale = !prezzo.toString().includes(".");
-  return prezzoFinale;
-});
+// const fullPricedBook = discountedBooks.find((book) => {
+//   const prezzo = parseFloat(book.price.replace("€", ""));
+//   console.log("fff", prezzo);
+//   let prezzoFinale = !prezzo.toString().includes(".");
+//   return prezzoFinale;
+// });
 
-console.log(fullPricedBook);
+// console.log(fullPricedBook);
+// //!Snack-3
+//* Creare un array (authors) che contiene gli autori dei libri.
+const authors = books.map((book) => book.author);
+console.log("gli autori dei libri", authors);
+
+//*Crea una variabile booleana (areAuthorsAdults) per verificare se gli autori sono tutti maggiorenni.
+const areAuthorsAdults = books.every((author) => author.author.age >= 18);
+console.log(areAuthorsAdults);
+//*Ordina l’array authors in base all’età, senza creare un nuovo array.se areAuthorsAdult è true, ordina in ordine crescente, altrimenti in ordine decrescente)
+authors.sort((a, b) => {
+  if (areAuthorsAdults === true) {
+    return a.age - b.age;
+  } else {
+    return b.age - a.age;
+  }
+});
+console.log("authors Ordinato in base alla areAuthorsAdults: ", authors);
