@@ -113,14 +113,31 @@ const books = [
 
 //!snack-4
 //* Creare un array (ages) che contiene le età degli autori dei libri.
-const ages = books.map((book) => book.author.age);
-console.log("le età degli autori dei libri :", ages);
+// const ages = books.map((book) => book.author.age);
+// console.log("le età degli autori dei libri :", ages);
 //* Calcola la somma delle età (agesSum) usando reduce
-const agesSum = ages.reduce((acc, cur) => {
-  return (acc += cur);
-}, 0);
-console.log("la somma delle età :", agesSum);
+// const agesSum = ages.reduce((acc, cur) => {
+//   return (acc += cur);
+// }, 0);
+// console.log("la somma delle età :", agesSum);
 
 //* Stampa in console l’età media degli autori dei libri
-const etàMedia = agesSum / ages.length;
-console.log("l’età media degli autori dei libri:", etàMedia);
+// const etàMedia = agesSum / ages.length;
+// console.log("l’età media degli autori dei libri:", etàMedia);
+//!snack-5
+
+async function getBooks() {
+  const ids = [2, 13, 7, 21, 19];
+  const promises = ids.map((id) => {
+    return fetch(
+      `https://boolean-spec-frontend.vercel.app/freetestapi/books/${id} `
+    ).then((res) => res.json());
+  });
+
+  const allPromise = await Promise.all(promises);
+  return allPromise;
+}
+
+getBooks()
+  .then((data) => console.log("array di libri : ", data))
+  .catch((error) => console.log(error));
