@@ -53,10 +53,43 @@ function somme(a, b) {
 console.log("La somma è : ", somme(4, 9));
 //*i libri che hanno più di 300 pagine :
 
-const longBook = books.filter((b) => b.pages > 300);
+const longBook = books.filter((book) => book.pages > 300);
 console.log(longBook);
 //*Solo i nomi dei libri con più di 300 pagine:
 const longBooksTitle = longBook.map((book) => book.title);
 console.log(longBooksTitle);
 //*Stampo in console ogni titolo nella console.
-books.forEach((el) => console.log("Titolo : ", el.title));
+books.forEach((book) => console.log("Titolo : ", book.title));
+//!Snack-2
+//*Creare un array (availableBooks) che contiene tutti i libri disponibili :
+const availableBooks = books.filter((book) => {
+  if (book.available === true) {
+    return book;
+  }
+});
+console.log(" available Book : ", availableBooks);
+//* Crea un array (discountedBooks) con gli availableBooks, ciascuno con il prezzo scontato del 20% (mantieni lo stesso formato e arrotonda al centesimo)
+
+const discountedBooks = availableBooks.map((book) => {
+  const prezzo = parseInt(book.price.replace("€", ""));
+  console.log("la stringa del numero prima la conversione :  ", book.price);
+  console.log("prezzo prima dello sconto ", prezzo);
+  const discount = (prezzo - prezzo * 0.2).toFixed(2);
+  console.log("prezzo scontato : ", discount);
+  return {
+    ...book,
+    price: `${discount}€`,
+  };
+});
+
+console.log("Libri con prezzi scontati : ", discountedBooks);
+
+//* Salva in una variabile (fullPricedBook) il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi).
+const fullPricedBook = discountedBooks.find((book) => {
+  const prezzo = parseFloat(book.price.replace("€", ""));
+  console.log("fff", prezzo);
+  let prezzoFinale = !prezzo.toString().includes(".");
+  return prezzoFinale;
+});
+
+console.log(fullPricedBook);
