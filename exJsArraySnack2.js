@@ -156,3 +156,19 @@ const books = [
 
 // const booksByPricein = books.sort((a, b) => b.available - a.available);
 // console.log(booksByPricein);
+//!Snack-7
+// const tagCounts = books.reduce((acc, book) => {
+//   //  itero su ogni tag del libro
+//   book.tags.forEach((tag) => {
+//     if (acc[tag]) {
+//       //  incremento il contatore per il tag
+//       acc[tag]++;
+//     } else {
+//       //  inizializzo il tag con valore 1
+//       acc[tag] = 1;
+//     }
+//   });
+//   return acc;
+// }, {});
+
+// console.log(tagCounts);
